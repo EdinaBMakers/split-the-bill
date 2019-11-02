@@ -23,12 +23,7 @@ describe('#splitBill', () => {
 
   it('throws error if tip is a negative number', () => {
     expect(() => { splitBill(20, -5, 2) })
-      .toThrowError('Tip must be greater than zero');
-  });
-
-  it('throws error if tip is zero', () => {
-    expect(() => { splitBill(20, 0, 2) })
-      .toThrowError('Tip must be greater than zero');
+      .toThrowError('Tip cannot be negative');
   });
 
   it('throws error if number of peolpe is not a number', () => {
@@ -44,5 +39,21 @@ describe('#splitBill', () => {
   it('throws error if number of people is zero', () => {
     expect(() => { splitBill(20, 20, 0) })
       .toThrowError('Number of people must be greater than zero');
+  });
+
+  it('can calculate bill without tip for one person', () => {
+    expect(splitBill(20, 0, 1)).toEqual(20);
+  });
+
+  it('can calculate bill with tip for one person', () => {
+    expect(splitBill(20, 10, 1)).toEqual(22);
+  });
+
+  it('can calculate bill without tip for multiple people', () => {
+    expect(splitBill(20, 0, 2)).toEqual(10);
+  });
+
+  it('can calculate bill with tip for multiple people', () => {
+    expect(splitBill(20, 10, 2)).toEqual(11);
   });
 });

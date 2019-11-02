@@ -13,8 +13,8 @@ function splitBill(billAmount, tipInPc, numOfPeople) {
     throw new Error('Tip is not a number');
   }
 
-  if (tipInPc <= 0) {
-    throw new Error('Tip must be greater than zero');
+  if (tipInPc < 0) {
+    throw new Error('Tip cannot be negative');
   }
 
   if (isNaN(numOfPeople)) {
@@ -24,4 +24,6 @@ function splitBill(billAmount, tipInPc, numOfPeople) {
   if (numOfPeople <= 0) {
     throw new Error('Number of people must be greater than zero');
   }
+
+  return billAmount * (1 + tipInPc / 100) / numOfPeople;
 }
