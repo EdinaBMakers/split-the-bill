@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./src/billSplitter.js"></script>
   <title>Split the bill</title>
 </head>
 <body>
   <h1>TIP CALCULATOR</h1>
 
+  <label id="error"></label>
+
   <p>How much was your bill?</p>
-  £ <input type="text" placeholder="Bill amount">
+  £ <input id="billAmount" type="text" placeholder="Bill amount">
   
   <p>How was your service?</p>
   <form action="">
@@ -24,9 +27,30 @@
   </form>
 
   <p>How many people are sharing the bill?</p>
-  <input type="text" placeholder="Number of people"> people
+  <input id="numOfPeople" type="text" placeholder="Number of people"> people
 
   <br>
-  <button>CALCULATE!</button>
+  <button id="calculate">CALCULATE!</button>
+
+  <br>
+  <label id="billPerPerson"></label>
+
+  <script>
+    document.getElementById("calculate").addEventListener("click", () => {
+      let billAmount = document.getElementById("billAmount").value;
+      let tipInPc = document.getElementById("serviceQuality").value;
+      let numOfPeople = document.getElementById("numOfPeople").value;
+
+      try {
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("billPerPerson")
+                .innerHTML = "Bill amount: £" + splitBill(billAmount, tipInPc, numOfPeople) + "/person";
+      }
+      catch(err) {
+        document.getElementById("billPerPerson").innerHTML = "";
+        document.getElementById("error").innerHTML = err.message;
+      }
+    })
+  </script>
 </body>
 </html>
