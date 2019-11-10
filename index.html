@@ -42,15 +42,22 @@
       let numOfPeople = document.getElementById("numOfPeople").value;
 
       try {
-        document.getElementById("error").innerHTML = "";
-        document.getElementById("billPerPerson")
-                .innerHTML = "Bill amount: £" + splitBill(billAmount, tipInPc, numOfPeople) + "/person";
+        setErrorLabel("");
+        setBillPerPersonLabel(`Bill amount: £${splitBill(billAmount, tipInPc, numOfPeople)}/person`);
       }
       catch(err) {
-        document.getElementById("billPerPerson").innerHTML = "";
-        document.getElementById("error").innerHTML = err.message;
+        setBillPerPersonLabel("");
+        setErrorLabel(err.message);
       }
-    })
+    });
+
+    function setErrorLabel(label) {
+      document.getElementById("error").innerHTML = label;
+    }
+
+    function setBillPerPersonLabel(label) {
+      document.getElementById("billPerPerson").innerHTML = label;
+    }
   </script>
 </body>
 </html>
