@@ -130,4 +130,20 @@ describe('Bill Splitter', () => {
     cy.get('#error').should('have.html', '');
     cy.get('#billPerPerson').should('have.html', 'Bill amount: £13/person');
   });
+
+  it('can recover from invalid state', () => {
+    cy.visit('/index.html');
+    cy.get('#calculate').click();
+
+    cy.get('#error').should('have.html', 'Bill amount is not a number');
+    cy.get('#billPerPerson').should('have.html', '');
+
+    cy.get('#billAmount').type('20');
+    cy.get('#serviceQuality').select('30');
+    cy.get('#numOfPeople').type('2');
+    cy.get('#calculate').click();
+
+    cy.get('#error').should('have.html', '');
+    cy.get('#billPerPerson').should('have.html', 'Bill amount: £13/person');
+  });
 });
