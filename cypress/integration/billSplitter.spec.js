@@ -67,6 +67,16 @@ describe('Bill Splitter', () => {
     cy.get('#billPerPerson').should('have.html', '');
   });
 
+  it('shows error when calculating bill without number of people', () => {
+    cy.visit('/index.html');
+    cy.get('#billAmount').type('20');
+    cy.get('#serviceQuality').select('30');
+    cy.get('#calculate').click();
+
+    cy.get('#error').should('have.html', 'Number of people is not a number');
+    cy.get('#billPerPerson').should('have.html', '');
+  });
+
   it('does not tip if tip is not selected', () => {
     cy.visit('/index.html');
     cy.get('#billAmount').type('20');
