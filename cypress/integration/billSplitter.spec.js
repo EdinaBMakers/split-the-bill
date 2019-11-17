@@ -1,24 +1,21 @@
 describe('Bill Splitter', () => {
-  it('can be loaded', () => {
+  beforeEach(() => {
     cy.visit('/index.html');
+  });
 
+  it('can be loaded', () => {
     cy.get('#title').should('have.html', 'TIP CALCULATOR');
   });
 
   it('does not show error by default', () => {
-    cy.visit('/index.html');
-
     cy.get('#error').should('have.html', '');
   });
 
   it('does not show split bill by default', () => {
-    cy.visit('/index.html');
-
     cy.get('#billPerPerson').should('have.html', '');
   });
   
   it('shows error when calculating bill without filling in any field', () => {
-    cy.visit('/index.html');
     cy.get('#calculate').click();
 
     cy.get('#error').should('have.html', 'Bill amount is not a number');
@@ -26,7 +23,6 @@ describe('Bill Splitter', () => {
   });
 
   it('shows error when calculating bill without bill amount', () => {
-    cy.visit('/index.html');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('2');
     cy.get('#calculate').click();
@@ -36,7 +32,6 @@ describe('Bill Splitter', () => {
   });
 
   it('shows error when calculating bill without bill amount', () => {
-    cy.visit('/index.html');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('2');
     cy.get('#calculate').click();
@@ -46,7 +41,6 @@ describe('Bill Splitter', () => {
   });
 
   it('shows error when calculating bill with bill amount as text', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('twenty');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('2');
@@ -57,7 +51,6 @@ describe('Bill Splitter', () => {
   });
 
   it('shows error when calculating bill with negative bill amount', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('-20');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('2');
@@ -68,7 +61,6 @@ describe('Bill Splitter', () => {
   });
 
   it('shows error when calculating bill without number of people', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('20');
     cy.get('#serviceQuality').select('30');
     cy.get('#calculate').click();
@@ -78,7 +70,6 @@ describe('Bill Splitter', () => {
   });
 
   it('shows error when calculating bill with number of people as text', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('20');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('two');
@@ -89,7 +80,6 @@ describe('Bill Splitter', () => {
   });
 
   it('shows error when calculating bill with zero number of people', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('20');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('0');
@@ -100,7 +90,6 @@ describe('Bill Splitter', () => {
   });
 
   it('shows error when calculating bill with negative number of people', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('20');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('-1');
@@ -111,7 +100,6 @@ describe('Bill Splitter', () => {
   });
 
   it('does not tip if tip is not selected', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('20');
     cy.get('#numOfPeople').type('2');
     cy.get('#calculate').click();
@@ -121,7 +109,6 @@ describe('Bill Splitter', () => {
   });
 
   it('can tip and split bill', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('20');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('2');
@@ -132,7 +119,6 @@ describe('Bill Splitter', () => {
   });
 
   it('can recover from invalid state', () => {
-    cy.visit('/index.html');
     cy.get('#calculate').click();
 
     cy.get('#error').should('have.html', 'Bill amount is not a number');
@@ -148,7 +134,6 @@ describe('Bill Splitter', () => {
   });
 
   it('can invalidate after successful calculation', () => {
-    cy.visit('/index.html');
     cy.get('#billAmount').type('20');
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('2');
