@@ -16,4 +16,13 @@ describe('Bill Splitter', () => {
 
     cy.get('#billPerPerson').should('have.html', '');
   });
+  
+  it('shows error when calculating bill without filling in any field', () => {
+    cy.visit('/index.html');
+    cy.get('#calculate').click();
+
+
+    cy.get('#error').should('have.html', 'Bill amount must be greater than zero');
+    cy.get('#billPerPerson').should('have.html', '');
+  });
 });
