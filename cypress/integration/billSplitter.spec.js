@@ -120,7 +120,7 @@ describe('Bill Splitter', () => {
     cy.get('#billPerPerson').should('have.html', 'Bill amount: £10/person');
   });
 
-  it('tips when tip is selected', () => {
+  it('can tip and split bill', () => {
     cy.visit('/index.html');
     cy.get('#billAmount').type('20');
     cy.get('#serviceQuality').select('30');
