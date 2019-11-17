@@ -36,4 +36,27 @@ describe('Bill Splitter', () => {
     cy.get('#error').should('have.html', 'Bill amount must be greater than zero');
     cy.get('#billPerPerson').should('have.html', '');
   });
+
+  it('shows error when calculating bill without bill amount', () => {
+    cy.visit('/index.html');
+    cy.get('#serviceQuality').select('30');
+    cy.get('#numOfPeople').type('2');
+    cy.get('#calculate').click();
+
+
+    cy.get('#error').should('have.html', 'Bill amount must be greater than zero');
+    cy.get('#billPerPerson').should('have.html', '');
+  });
+
+  it('shows error when calculating bill with text bill amount', () => {
+    cy.visit('/index.html');
+    cy.get('#billAmount').type('twenty');
+    cy.get('#serviceQuality').select('30');
+    cy.get('#numOfPeople').type('2');
+    cy.get('#calculate').click();
+
+
+    cy.get('#error').should('have.html', 'Bill amount is not a number');
+    cy.get('#billPerPerson').should('have.html', '');
+  });
 });
