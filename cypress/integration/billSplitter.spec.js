@@ -21,7 +21,6 @@ describe('Bill Splitter', () => {
     cy.visit('/index.html');
     cy.get('#calculate').click();
 
-
     cy.get('#error').should('have.html', 'Bill amount is not a number');
     cy.get('#billPerPerson').should('have.html', '');
   });
@@ -32,7 +31,6 @@ describe('Bill Splitter', () => {
     cy.get('#numOfPeople').type('2');
     cy.get('#calculate').click();
 
-
     cy.get('#error').should('have.html', 'Bill amount is not a number');
     cy.get('#billPerPerson').should('have.html', '');
   });
@@ -42,7 +40,6 @@ describe('Bill Splitter', () => {
     cy.get('#serviceQuality').select('30');
     cy.get('#numOfPeople').type('2');
     cy.get('#calculate').click();
-
 
     cy.get('#error').should('have.html', 'Bill amount is not a number');
     cy.get('#billPerPerson').should('have.html', '');
@@ -55,7 +52,6 @@ describe('Bill Splitter', () => {
     cy.get('#numOfPeople').type('2');
     cy.get('#calculate').click();
 
-
     cy.get('#error').should('have.html', 'Bill amount is not a number');
     cy.get('#billPerPerson').should('have.html', '');
   });
@@ -67,8 +63,17 @@ describe('Bill Splitter', () => {
     cy.get('#numOfPeople').type('2');
     cy.get('#calculate').click();
 
-
     cy.get('#error').should('have.html', 'Bill amount must be greater than zero');
     cy.get('#billPerPerson').should('have.html', '');
+  });
+
+  it('does not tip if tip is not selected', () => {
+    cy.visit('/index.html');
+    cy.get('#billAmount').type('20');
+    cy.get('#numOfPeople').type('2');
+    cy.get('#calculate').click();
+
+    cy.get('#error').should('have.html', '');
+    cy.get('#billPerPerson').should('have.html', 'Bill amount: £10/person');
   });
 });
