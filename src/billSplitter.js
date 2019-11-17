@@ -9,7 +9,7 @@ function splitBill(billAmount, tipInPc, numOfPeople) {
 }
 
 function _validateBillAmount(billAmount) {
-  if (isNaN(billAmount)) {
+  if (isNaN(parseFloat(billAmount))) {
     throw new Error('Bill amount is not a number');
   }
 
@@ -19,7 +19,7 @@ function _validateBillAmount(billAmount) {
 }
 
 function _validateTip(tipInPc) {
-  if (isNaN(tipInPc)) {
+  if (isNaN(parseFloat(tipInPc))) {
     throw new Error('Tip is not a number');
   }
 
@@ -29,7 +29,7 @@ function _validateTip(tipInPc) {
 }
 
 function _validateNumOfPeople(numOfPeople) {
-  if (isNaN(numOfPeople)) {
+  if (isNaN(parseInt(numOfPeople))) {
     throw new Error('Number of people is not a number');
   }
 
