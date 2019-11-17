@@ -1,0 +1,25 @@
+{
+  "name": "split-the-bill",
+  "version": "1.0.0",
+  "description": "A web application for splitting bill",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdinaBMakers/split-the-bill.git"
+  },
+  "author": "Edina Bolkeny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdinaBMakers/split-the-bill/issues"
+  },
+  "homepage": "https://github.com/EdinaBMakers/split-the-bill#readme",
+  "devDependencies": {
+    "cypress": "^3.6.1"
+  }
+}
