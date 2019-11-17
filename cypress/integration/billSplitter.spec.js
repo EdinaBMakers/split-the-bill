@@ -45,7 +45,7 @@ describe('Bill Splitter', () => {
     cy.get('#billPerPerson').should('have.html', '');
   });
 
-  it('shows error when calculating bill with text bill amount', () => {
+  it('shows error when calculating bill with bill amount as text', () => {
     cy.visit('/index.html');
     cy.get('#billAmount').type('twenty');
     cy.get('#serviceQuality').select('30');
@@ -74,6 +74,39 @@ describe('Bill Splitter', () => {
     cy.get('#calculate').click();
 
     cy.get('#error').should('have.html', 'Number of people is not a number');
+    cy.get('#billPerPerson').should('have.html', '');
+  });
+
+  it('shows error when calculating bill with number of people as text', () => {
+    cy.visit('/index.html');
+    cy.get('#billAmount').type('20');
+    cy.get('#serviceQuality').select('30');
+    cy.get('#numOfPeople').type('two');
+    cy.get('#calculate').click();
+
+    cy.get('#error').should('have.html', 'Number of people is not a number');
+    cy.get('#billPerPerson').should('have.html', '');
+  });
+
+  it('shows error when calculating bill with zero number of people', () => {
+    cy.visit('/index.html');
+    cy.get('#billAmount').type('20');
+    cy.get('#serviceQuality').select('30');
+    cy.get('#numOfPeople').type('0');
+    cy.get('#calculate').click();
+
+    cy.get('#error').should('have.html', 'Number of people must be 1 or more');
+    cy.get('#billPerPerson').should('have.html', '');
+  });
+
+  it('shows error when calculating bill with negative number of people', () => {
+    cy.visit('/index.html');
+    cy.get('#billAmount').type('20');
+    cy.get('#serviceQuality').select('30');
+    cy.get('#numOfPeople').type('-1');
+    cy.get('#calculate').click();
+
+    cy.get('#error').should('have.html', 'Number of people must be 1 or more');
     cy.get('#billPerPerson').should('have.html', '');
   });
 

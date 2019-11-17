@@ -33,7 +33,7 @@ function _validateNumOfPeople(numOfPeople) {
     throw new Error('Number of people is not a number');
   }
 
-  if (numOfPeople <= 0) {
-    throw new Error('Number of people must be greater than zero');
+  if (numOfPeople < 1) {
+    throw new Error('Number of people must be 1 or more');
   }
 }
